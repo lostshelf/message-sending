@@ -36,7 +36,7 @@ fn main() {
             let listener = TcpListener::bind(std::format!("127.0.0.1:{}", &port)).expect("Error starting listener.");
             for stream in listener.incoming() {
                 let mut incoming_message = String::new();
-                stream.unwrap().read_to_string(&mut incoming_message).expect("Error reading to string.");
+                stream.expect("Stream error").read_to_string(&mut incoming_message).expect("Error reading to string.");
                 println!("{}", incoming_message);
             }
         }
